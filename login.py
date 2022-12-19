@@ -12,12 +12,12 @@ try:
     time.sleep(2)
     login_input = driver.find_element(By.NAME, 'email')
     login_input.send_keys(auth.login)
-    time.sleep(1)
+    time.sleep(2)
     password_input = driver.find_element(By.NAME, 'password')
     password_input.send_keys(auth.password)
-    time.sleep(3)
-    password_input.send_keys(Keys.ENTER)
-    time.sleep(1)
+    time.sleep(2)
+    login_input.send_keys(Keys.ENTER)
+    time.sleep(2)
 
 except Exception as ex:
     print(ex)
