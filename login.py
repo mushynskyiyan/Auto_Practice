@@ -3,14 +3,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import auth
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+import pytest
+import requests
 
-options = webdriver.ChromeOptions()
-options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 12; SM-S906N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.119 Mobile Safari/537.36")
+# options = webdriver.ChromeOptions()
+# options.add_argument("user-agent=Mozilla/5.0 (Linux; Android 12; SM-S906N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.119 Mobile Safari/537.36")
 url = "https://app.ecto.com"
-driver = webdriver.Chrome(
-    executable_path="/Users/jan/PycharmProjects/Cource/AutoPractice/chromedriver/chromedriver",
-    options=options
-)
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+# old config
+# driver = webdriver.Chrome(
+#     executable_path="/Users/jan/PycharmProjects/Cource/AutoPractice/chromedriver/chromedriver")
 
 try:
     driver.get(url=url)
@@ -26,6 +30,10 @@ try:
     login_input.send_keys(Keys.ENTER)
     time.sleep(6)
 
+
+    def test_auth():
+        r = requests.get(url)
+        assert r.status_code == 200
 except Exception as ex:
     print(ex)
 finally:
