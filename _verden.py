@@ -17,3 +17,4 @@ search_filed.send_keys(expected.info)
 # search_filed.send_keys(Keys.ENTER)
 
 driver.find_element(By.XPATH, expected.search_button_id).click()
+time.sleep(10)
