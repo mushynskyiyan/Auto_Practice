@@ -4,7 +4,6 @@ import time
 
 
 window = tk.Tk()
-fg_tones = ['red', 'green', 'blue']
 window.geometry("450x300")
 
 
@@ -26,10 +25,17 @@ frame = tk.Frame(
     height=10
 )
 
+calls = 0
+
+
+def counter(event):
+    global calls
+    calls+=1
+    result.config(text=f'Wrong click counter {calls}')
 
 
 def wrong_call():
-    result_1.config(text=f'Wrong call, bruh')
+    result_1.config(text=f'Sorry, you do wrong')
 
 
 button = tk.Button(
@@ -41,9 +47,10 @@ button = tk.Button(
     height=1,
     command=wrong_call
 )
+button.bind('<Button-1>', counter)
 result = tk.Label(
-    text="Test your destiny!",
-    foreground="white",  # Set the text color to white
+    text=f'Wrong click count {calls}',
+    foreground="white",
     font=("Arial", 25)
 )
 frame_2 = tk.Frame(
@@ -51,7 +58,7 @@ frame_2 = tk.Frame(
 )
 
 result_1 = tk.Label(
-    foreground="white",  # Set the text color to white
+    foreground="white",
     font=("Arial", 25)
 )
 for c in window.children:
@@ -99,17 +106,19 @@ def task_orange():
     )
 
 
+def obnulyator():
+    global calls
+    calls = 0
+
+
+def nothingner(event):
+    pass
+
+
 taskos = [task_red, task_orange, task_green, task_blue]
 
 
 def task2():
-    # label.config(
-    #     text="Click on the button when you see red",
-    #     foreground="white",
-    #     background=random.choice(fg_tones),
-    #     width=100,
-    #     height=2
-    # )
     f = random.choice(taskos)
     f()
     if f == task_red:
@@ -131,6 +140,9 @@ def task2():
             width=10,
             height=1,
             command=timer)
+        result.config(text=f'Test your destiny!')
+        button.bind('<Button-1>', nothingner)
+        obnulyator()
     else:
         button.config(
             text="Click me!",
@@ -140,6 +152,7 @@ def task2():
             width=10,
             height=1,
             command=wrong_call)
+        button.bind('<Button-1>', counter)
     window.after(random.randint(2000, 4000), task2)
 
 
