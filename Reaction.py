@@ -4,7 +4,7 @@ import time
 
 
 window = tk.Tk()
-window.geometry("450x300")
+window.geometry("550x300")
 
 
 def generate_text():
@@ -34,8 +34,17 @@ def counter(event):
     result.config(text=f'Wrong click counter {calls}')
 
 
+phrases1 = ["You done with it!",
+            "You think you can win this way?",
+            "Reading this message \n makes you forget about test",
+            "Це просто пекельні борошна...",
+            'Sorry, you do wrong',
+            'Please, pay more attention to test',
+            "Are you kidding me?"]
+
+
 def wrong_call():
-    result_1.config(text=f'Sorry, you do wrong')
+    result_1.config(text=random.choice(phrases1))
 
 
 button = tk.Button(
@@ -128,7 +137,7 @@ def task2():
         def timer():
             tok = time.time()
             times = tok - tik
-            result_1.config(text=f'Reaction time is {times}')
+            result_1.config(text=f'Reaction time is {round(times, 2)} seconds')
             print(f'Reaction=')
 
 
