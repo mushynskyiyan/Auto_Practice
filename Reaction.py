@@ -1,8 +1,7 @@
 import tkinter as tk
 import random
 import time
-import datetime
-from tkinter import ACTIVE, DISABLED
+
 
 window = tk.Tk()
 fg_tones = ['red', 'green', 'blue']
