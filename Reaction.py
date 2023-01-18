@@ -4,7 +4,6 @@ import time
 import datetime
 from tkinter import ACTIVE, DISABLED
 
-tik = time.time()
 window = tk.Tk()
 fg_tones = ['red', 'green', 'blue']
 window.geometry("450x300")
@@ -29,11 +28,9 @@ frame = tk.Frame(
 )
 
 
-def timer():
-    tok = time.time()
-    times = tok - tik
-    result_1.config(text=f'Reaction time is {times}')
-    print(f'Reaction=')
+
+def wrong_call():
+    result_1.config(text=f'Wrong call, bruh')
 
 
 button = tk.Button(
@@ -43,7 +40,7 @@ button = tk.Button(
     foreground="black",
     width=10,
     height=1,
-    command=timer
+    command=wrong_call
 )
 result = tk.Label(
     text="Test your destiny!",
@@ -117,21 +114,37 @@ def task2():
     f = random.choice(taskos)
     f()
     if f == task_red:
+        tik = time.time()
 
 
+        def timer():
+            tok = time.time()
+            times = tok - tik
+            result_1.config(text=f'Reaction time is {times}')
+            print(f'Reaction=')
+
+
+        button.config(
+            text="CLICK, quick!",
+            activebackground='blue',
+            background="red",
+            foreground="black",
+            width=10,
+            height=1,
+            command=timer)
+    else:
+        button.config(
+            text="Click me!",
+            activebackground='blue',
+            background="red",
+            foreground="black",
+            width=10,
+            height=1,
+            command=wrong_call)
     window.after(random.randint(2000, 4000), task2)
 
 
 window.after(2000, task2)
 
 window.mainloop()
-# time.sleep(1)
-# label = tk.Label(
-#     text=generate_text(),
-#     foreground="white",
-#     background='black',
-#     width=100,
-#     height=2
-# )
-# label.pack()
-# window.update()
+
