@@ -103,15 +103,23 @@ def task_orange():
     )
 
 
+taskos = [task_red, task_orange, task_green, task_blue]
+
+
 def task2():
-    label.config(
-        text="Click on the button when you see red",
-        foreground="white",
-        background=random.choice(fg_tones),
-        width=100,
-        height=2
-    )
-    window.after(random.randint(1000, 4000), task2)
+    # label.config(
+    #     text="Click on the button when you see red",
+    #     foreground="white",
+    #     background=random.choice(fg_tones),
+    #     width=100,
+    #     height=2
+    # )
+    f = random.choice(taskos)
+    f()
+    if f == task_red:
+
+
+    window.after(random.randint(2000, 4000), task2)
 
 
 window.after(2000, task2)
