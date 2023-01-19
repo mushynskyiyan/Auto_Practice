@@ -5,7 +5,7 @@ import time
 
 window = tk.Tk()
 window.geometry("550x300")
-
+#setting label
 label = tk.Label(
     text="Reaction test starts in 3..2..1",
     foreground="white",
@@ -20,13 +20,13 @@ frame = tk.Frame(
 
 calls = 0
 
-
+#setting counter funtion to count wrong function calls
 def counter(event):
     global calls
     calls+=1
     result.config(text=f'Wrong click counter {calls}')
 
-
+#just phrases to make user smile
 phrases1 = ["You done with it!",
             "You think you can win this way?",
             "Reading this message \n makes you forget about test",
@@ -35,11 +35,11 @@ phrases1 = ["You done with it!",
             'Please, pay more attention to test',
             "Are you kidding me?"]
 
-
+#phrase generator func
 def wrong_call():
     result_1.config(text=random.choice(phrases1))
 
-
+#configuring button
 button = tk.Button(
     text="Click me!",
     activebackground='blue',
@@ -49,6 +49,7 @@ button = tk.Button(
     height=1,
     command=wrong_call
 )
+# binding left click on button on counter function to count wrong calls
 button.bind('<Button-1>', counter)
 result = tk.Label(
     text=f'Wrong click count {calls}',
@@ -67,7 +68,7 @@ for c in window.children:
     print(c)
     window.children[c].pack()
 
-
+#configuring label colors hard way
 def task_red():
     label.configure(
         text="Click on the button when you see red",
@@ -107,33 +108,33 @@ def task_orange():
         height=2
     )
 
-
+#function to set calls=0 when red callor already shown
 def obnulyator():
     global calls
     calls = 0
 
-
+#function to bind left mouse click to nothing during label color is red
 def nothingner(event):
     pass
 
-
+#list of tasks - colors
 taskos = [task_red, task_orange, task_green, task_blue]
 
-
+#task that will be called in endless cycle
 def task2():
     f = random.choice(taskos)
     f()
-    if f == task_red:
+    if f == task_red: #when color of label is red - needed parameters are set
         tik = time.time()
 
 
-        def timer():
+        def timer(): #timer function
             tok = time.time()
             times = tok - tik
             result_1.config(text=f'Reaction time is {round(times, 2)} seconds')
             print(f'Reaction=')
 
-
+#button config that calls timer function
         button.config(
             text="CLICK, quick!",
             activebackground='blue',
@@ -157,7 +158,7 @@ def task2():
         button.bind('<Button-1>', counter)
     window.after(random.randint(2000, 4000), task2)
 
-
+#first call of function to start chellenge
 window.after(2000, task2)
 
 window.mainloop()
