@@ -6,13 +6,6 @@ import time
 window = tk.Tk()
 window.geometry("550x300")
 
-
-def generate_text():
-    text = ["Reaction test starts in 3..2..1", "Click on the button when you see red"]
-    for i in range(len(text)):
-        return text[i]
-
-
 label = tk.Label(
     text="Reaction test starts in 3..2..1",
     foreground="white",
