@@ -146,7 +146,7 @@ def task2():
         result.config(text=f'Test your destiny!')
         button.bind('<Button-1>', nothingner)
         obnulyator()
-    else:
+    else: #configure button to count wrong calls
         button.config(
             text="Click me!",
             activebackground='blue',
